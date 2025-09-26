@@ -1,0 +1,9 @@
+query,intent,expected_ids
+"returns policy",navigational,"web-1"
+"return an item",semantic,"web-1"
+"healing crystal",product,"product-MAL-001"
+"agarbatti",synonym,"product-MAL-002"
+"company profile",docs,"doc-1"
+"vastu guidelines",docs,"doc-2"
+"cristal positivity",typo,"product-MAL-001"
+"refund policy",navigational,"web-1"

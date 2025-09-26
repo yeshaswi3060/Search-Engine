@@ -1,0 +1,5 @@
+file_path,title,notes,tags
+data/raw/docs/example.pdf,Example PDF,Finance report,finance;quarterly
+data/raw/docs/company_profile.pdf,Company Profile,Overview of our services,pdf;company
+data/raw/docs/vastu_guidelines.docx,Vastu Guidelines,Rules for house layout,pdf;vastu
+data/raw/docs/astro_training.pptx,Astrology Training,Slides from training session,pdf;astro

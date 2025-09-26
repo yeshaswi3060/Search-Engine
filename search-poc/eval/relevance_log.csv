@@ -1,0 +1,2 @@
+date,query,intent,expected_ids,top5_ids,hit_at_5,alpha,notes
+2025-09-26,returns policy,navigational,"web-1","web-1;doc-1;product-MAL-001",Y,0.6,baseline

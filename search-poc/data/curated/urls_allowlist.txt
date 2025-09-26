@@ -1,0 +1,5 @@
+# Allowed domains/paths to crawl. One per line. Remove comments.
+example.com
+https://example.com/docs
+docs.python.org
+shop.malyam.com

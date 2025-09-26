@@ -1,0 +1,8 @@
+# One URL or sitemap per line. Remove this comment line.
+https://example.com/
+https://example.com/sitemap.xml
+https://example.com/faq
+https://example.com/blog/
+https://docs.python.org/3/tutorial/
+https://shop.malyam.com/collections/gemstones
+https://shop.malyam.com/pages/returns-policy

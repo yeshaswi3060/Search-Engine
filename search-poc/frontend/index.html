@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search PoC</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="title">
+      <span class="logo">🔎</span>
+      <span>Search PoC</span>
+    </div>
+    <div class="env-status">
+      <small>Dev</small>
+      <span id="status-dot" class="status-dot gray" title="Unknown"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="search-row">
+      <input id="q" class="search-input" type="text" placeholder="Search products, docs, pages…" />
+      <button id="btnSearch" class="btn">Search</button>
+      <div class="alpha">
+        <label for="alpha">Alpha</label>
+        <input id="alpha" type="range" min="0" max="1" step="0.1" value="0.6" />
+        <div class="ticks">
+          <span>0.5</span><span>0.6</span><span>0.7</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters">
+      <div class="chips">
+        <button class="chip active" data-type="all">All</button>
+        <button class="chip" data-type="web">Web</button>
+        <button class="chip" data-type="pdf">Docs</button>
+        <button class="chip" data-type="product">Products</button>
+      </div>
+      <div class="tags">
+        <label for="tags">Tags</label>
+        <select id="tags" multiple></select>
+      </div>
+    </section>
+
+    <section id="state-initial" class="state">
+      <div class="hint">Try: <span class="k">refund policy</span>, <span class="k">healing crystal</span>, <span class="k">company profile</span></div>
+    </section>
+    <section id="state-loading" class="state hidden"><div class="spinner"></div></section>
+    <section id="state-error" class="state hidden"><div id="error-banner" class="error"></div></section>
+    <section id="state-empty" class="state hidden"><div class="empty">No results. Try a simpler term or remove filters.</div></section>
+
+    <section id="results" class="results hidden"></section>
+
+    <nav id="pagination" class="pagination hidden">
+      <button id="prev" class="btn" disabled>Prev</button>
+      <span id="page-info"></span>
+      <button id="next" class="btn" disabled>Next</button>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="metrics">
+      <span id="query-time">– ms</span>
+      <span id="count">0 results</span>
+      <span id="vector-pill" class="pill gray">Vector OFF</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

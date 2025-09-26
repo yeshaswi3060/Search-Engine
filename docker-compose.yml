@@ -1,0 +1,50 @@
+services:
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    environment:
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-master}
+    ports: ["7700:7700"]
+    volumes: ["./data/meili:/meili_data"]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:7700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports: ["6333:6333"]
+    volumes: ["./data/qdrant:/qdrant/storage"]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:6333/collections"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  search-api:
+    build: ./search-poc/backend
+    environment:
+      MEILI_URL: http://meilisearch:7700
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-master}
+      QDRANT_URL: http://qdrant:6333
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      EMBEDDING_DIM: ${EMBEDDING_DIM:-384}
+      ALPHA_DEFAULT: ${ALPHA_DEFAULT:-0.6}
+      RESULTS_LIMIT_MAX: ${RESULTS_LIMIT_MAX:-50}
+      CORS_ORIGINS: http://localhost:5173
+    ports: ["8080:8080"]
+    depends_on:
+      - meilisearch
+      - qdrant
+    restart: unless-stopped
+
+  frontend:
+    build: ./search-poc/frontend-react
+    environment:
+      VITE_API_BASE: http://localhost:8080
+    ports: ["3000:80"]
+    depends_on:
+      - search-api
+    restart: unless-stopped

@@ -1,0 +1,4 @@
+# Disallowed paths (prefix match). One per line. Remove comments.
+/cart
+/login
+/checkout
